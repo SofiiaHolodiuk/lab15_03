@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завдання 3: Шифрування</title>
+    <script>
+        function encryptText() {
+            let inputText = document.getElementById('inputText').value;
+            let resultText = '';
+
+            for (let i = 0; i < inputText.length; i++) {
+                let currentChar = inputText[i];
+
+                // Перевіряємо, чи це літери українського алфавіту
+                if (currentChar >= 'а' && currentChar <= 'я') {
+                    // Якщо це 'я', замінюємо на 'а'
+                    if (currentChar === 'я') {
+                        resultText += 'а';
+                    } else {
+                        // Заміщаємо літеру на наступну в алфавіті
+                        resultText += String.fromCharCode(currentChar.charCodeAt(0) + 1);
+                    }
+                } else {
+                    // Якщо це не літера, додаємо без змін
+                    resultText += currentChar;
+                }
+            }
+
+            // Виводимо результат
+            document.getElementById('result').innerText = `Зашифрований текст: ${resultText}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Завдання 3: Шифрування</h1>
+    <label for="inputText">Введіть текст для шифрування: </label>
+    <textarea id="inputText" rows="4" cols="50"></textarea><br><br>
+    <button onclick="encryptText()">Зашифрувати</button>
+    <pre id="result"></pre>
+</body>
+</html>
